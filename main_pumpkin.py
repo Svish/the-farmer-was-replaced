@@ -2,6 +2,7 @@ from watering import *
 from movement import *
 from planting import plantPumpkin
 
+change_hat(Hats.Pumpkin_Hat)
 
 while True:
 	goto2((0,0))
@@ -18,6 +19,7 @@ while True:
 	
 	# Check unknowns until none left
 	while len(unknown) > 0:
+		quick_print("Unknown left: ", len(unknown))
 		next = unknown.pop(0)
 		goto2(next)
 		if get_entity_type() == Entities.Pumpkin:
@@ -26,6 +28,8 @@ while True:
 			continue
 		
 		harvest()
+		if len(unknown) < 10:
+			water()
 		plantPumpkin()
 		unknown.append(next)
 	

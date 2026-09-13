@@ -1,5 +1,7 @@
 from lib import *
 
+mid = get_world_size() / 2
+
 # Goto next square, return true if back to 0,0
 def cycle():
 	if get_pos_x() == get_world_size() - 1:
@@ -23,7 +25,6 @@ def goto(xy):
 # Goto with wrap
 def goto2(xy):
 	x, y = xy
-	mid = get_world_size() / 2
 	
 	dx = when(x - get_pos_x() > mid, West, East)
 	dy = when(y - get_pos_y() > mid, South, North)		

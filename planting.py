@@ -5,7 +5,7 @@ def plantHay():
 def plantWood():
 	x = get_pos_x()
 	y = get_pos_y()
-	if (y % 2 == 0 and x % 2 == 1) or (y % 2 == 1 and x % 2 == 0):
+	if (x + y) % 2 == 0:
 		plant(Entities.Tree)
 	else:
 		plant(Entities.Bush)
@@ -19,7 +19,7 @@ def plantCarrot():
 def plantPumpkin():
 	if get_ground_type() != Grounds.Soil:
 		till()
-	if not plant(Entities.Pumpkin):
+	if num_items(Items.Carrot) < get_cost(Entities.Pumpkin)[Items.Carrot] or not plant(Entities.Pumpkin):
 		plantCarrot()
 
 def plantRandom(options = [
