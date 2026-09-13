@@ -14,7 +14,7 @@ while True:
 			unknown.append((get_pos_x(), get_pos_y()))
 			harvest()
 			plantPumpkin()
-		if cycle():
+		if serpentine():
 			break
 	
 	# Check unknowns until none left

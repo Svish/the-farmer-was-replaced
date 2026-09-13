@@ -16,10 +16,11 @@ def plantCarrot():
 	if not plant(Entities.Carrot):
 		plantRandom([plantHay, plantWood])
 
+pumpkin_carrot_cost = get_cost(Entities.Pumpkin)[Items.Carrot]
 def plantPumpkin():
 	if get_ground_type() != Grounds.Soil:
 		till()
-	if num_items(Items.Carrot) < get_cost(Entities.Pumpkin)[Items.Carrot] or not plant(Entities.Pumpkin):
+	if num_items(Items.Carrot) < pumpkin_carrot_cost or not plant(Entities.Pumpkin):
 		plantCarrot()
 
 def plantRandom(options = [
