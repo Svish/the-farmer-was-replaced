@@ -26,7 +26,7 @@ def serpentine():
 	return get_pos_x() == 0 and get_pos_y() == 0
 
 # Goto without wrap
-def goto(xy):
+def goto_simple(xy):
 	x, y = xy
 
 	while get_pos_x() > x:
@@ -39,7 +39,7 @@ def goto(xy):
 		move(North)
 
 # Goto with wrap
-def goto2(xy):
+def goto(xy):
 	x, y = xy
 
 	dx = when((x - get_pos_x()) % world_size > mid, West, East)
