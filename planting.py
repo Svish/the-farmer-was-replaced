@@ -6,7 +6,7 @@ def water():
 
 
 def harvest_when_ready():
-	while not can_harvest() and get_entity_type() != Entities.Dead_Pumpkin:
+	while not can_harvest() and get_entity_type() not in [None, Entities.Dead_Pumpkin]:
 		continue
 	return harvest()
 
