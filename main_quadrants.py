@@ -8,46 +8,35 @@ def forever(action, size):
 
 world_size = get_world_size()
 edge = world_size // 4
-farm_size = (edge, edge*2)
+farm_size = (edge*2, edge)
 
-origins = [
-	(
-		(0, 0),
-		farmSunflower,
-	),
-	(
-		(edge, 0),
-		farmCarrot,
-	),
-	(
-		(edge*2, 0),
-		farmCarrot,
-	),
-	(
-		(edge*3, 0),
-		farmCarrot,
-	),
-	(
-		(0, farm_size[1]),
-		farmCarrot,
-	),
-	(
-		(edge, farm_size[1]),
-		farmCarrot,
-	),
-	(
-		(edge*2, farm_size[1]),
-		farmCarrot,
-	),
-	(
-		(edge*3, farm_size[1]),
-		farmWood,
-	),
+farm = [
+	farmSunflower,
+	farmWood,
+	farmHay,
+	farmHay,
+	farmCarrot,
+	farmCarrot,
+	farmCarrot,
+	farmCarrot,
 ]
 
-for origin, farm in origins:
-	goto(origin)
+origins = [
+	(0, 0),
+	(0, edge),
+	(0, edge*2),
+	(0, edge*3),
+	(farm_size[0], 0),
+	(farm_size[0], edge),
+	(farm_size[0], edge*2),
+	(farm_size[0], edge*3),
+]
+
+for i in range(len(origins)):
+	f = farm[i % len(farm)]
+	o = origins[i]
+	goto(o)
 	if num_drones() < max_drones():
-		spawn_drone(forever, farm, farm_size)
+		spawn_drone(forever, f, farm_size)
 	else:
-		forever(farm, farm_size)
+		forever(f, farm_size)
