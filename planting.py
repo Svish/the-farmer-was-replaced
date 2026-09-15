@@ -1,7 +1,21 @@
+def water():
+	if num_items(Items.Water) > 0:
+		if get_water() < 1:
+			return use_item(Items.Water)
+	return False
+
+
+def harvest_when_ready():
+	while not can_harvest() and get_entity_type() != Entities.Dead_Pumpkin:
+		continue
+	return harvest()
+
+
 def plantHay():
 	if get_ground_type() != Grounds.Grassland:
 		till()
 	return Entities.Grass
+
 
 def plantWood():
 	x = get_pos_x()
@@ -13,6 +27,7 @@ def plantWood():
 		plant(Entities.Bush)
 		return Entities.Bush
 
+
 def plantCarrot():
 	if get_ground_type() != Grounds.Soil:
 		till()
@@ -20,14 +35,15 @@ def plantCarrot():
 		return plantRandom([Items.Hay, Items.Wood])
 	return Entities.Carrot
 
-pumpkin_carrot_cost = get_cost(Entities.Pumpkin)[Items.Carrot]
+
 def plantPumpkin():
 	if get_ground_type() != Grounds.Soil:
 		till()
-	if num_items(Items.Carrot) < pumpkin_carrot_cost or not plant(Entities.Pumpkin):
+	if num_items(Items.Carrot) < get_cost(Entities.Pumpkin)[Items.Carrot] or not plant(Entities.Pumpkin):
 		plantCarrot()
 		return Entities.Carrot
 	return Entities.Pumpkin
+
 
 def plantSunflower():
 	if get_ground_type() != Grounds.Soil:
@@ -37,9 +53,9 @@ def plantSunflower():
 
 def plantRandom(options):
 	option = random() * len(options) // 1
-	return map[options[option]]()
+	return plantMap[options[option]]()
 
-map = {
+plantMap = {
 	Items.Hay: plantHay,
 	Items.Wood: plantWood,
 	Items.Carrot: plantCarrot,

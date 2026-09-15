@@ -22,7 +22,7 @@ while True:
 	if get_entity_type() == None or get_entity_type() == Entities.Dead_Pumpkin or can_harvest():
 		harvest()
 		plantRandom(items)
-	serpentine()
+	serpentine_rows()
 
 	if get_time() >= next_stats:
 		print_stats(initial_stats)
